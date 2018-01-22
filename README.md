@@ -1,6 +1,8 @@
 BookService
 ===========
 
+DotNet Web API configured to work with AngularJS project posted @https://github.com/gsuresh7/AngularBlog
+
 Requirements:
 
 - Visual Studio
