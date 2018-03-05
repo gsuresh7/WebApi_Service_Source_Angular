@@ -11,7 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BookService.Models;
 using System.Web.Http.Cors;
-using BookService.BGC.Click.Services;
+
 
 namespace BookService.Controllers
 {
@@ -19,7 +19,7 @@ namespace BookService.Controllers
     public class AuthorsController : ApiController
     {
         private BookServiceContext db = new BookServiceContext();
-        Dictionary[] _stockItemNumbers;
+        //Dictionary[] _stockItemNumbers;
         // GET: api/Authors
         public IQueryable<Author> GetAuthors()
         {
@@ -47,21 +47,7 @@ namespace BookService.Controllers
            
         }
 
-        public List<StockNumber> GetAuthorsbyTask(string gettaskstest)
-        {
-            ServiceOptimizationServiceClient soc = new ServiceOptimizationServiceClient("CustomBinding_ServiceOptimizationService1");
-            DictionaryType[] dictionaryTypes = new DictionaryType[] { new DictionaryType() { Name = "StockItemNumber" } };
-            string[] requestedProperties = new string[] { "IsStockAvailableCheckRequired", "Name", "Key" };
-            _stockItemNumbers = soc.GetDictionaryItem(null, dictionaryTypes, requestedProperties);
-            List<StockNumber> StockNumbers = new List<StockNumber>();
-            foreach (Dictionary dict in _stockItemNumbers)
-            {
-                StockNumbers.Add(
-                    new StockNumber { Key=dict.Key,Name=dict.Name});
-            }
-            
-            return StockNumbers.GetRange(0,5);
-        }
+       
 
 
         // PUT: api/Authors/5
