@@ -18,9 +18,13 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
 
         // GET: api/Authors
-        public IQueryable<Hero> GetHeroes()
+        public IQueryable<Hero> GetHeroes(string searchstring)
         {
+            if(string.IsNullOrEmpty(searchstring))
             return db.Heroes;
+            else
+            return db.Heroes.Where(b => b.name.Contains(searchstring));
+
         }
 
         // GET: api/Authors/5

@@ -21,9 +21,19 @@ namespace BookService.Controllers
         private BookServiceContext db = new BookServiceContext();
         //Dictionary[] _stockItemNumbers;
         // GET: api/Authors
+        public IQueryable<Author> GetAuthors(string searchstring)
+        {
+            if (string.IsNullOrEmpty(searchstring))
+                return db.Authors;
+            else
+                return db.Authors.Where(b => b.Name.Contains(searchstring));
+        }
+
         public IQueryable<Author> GetAuthors()
         {
-            return db.Authors;
+           
+                return db.Authors;
+           
         }
 
         // GET: api/Authors/5
@@ -41,7 +51,7 @@ namespace BookService.Controllers
 
        
       
-        public IQueryable<Author> GetAuthorbySearch(String queryOptions)
+        public IQueryable<Author> GetAuthorsbySearch(String queryOptions)
         {
             return db.Authors.Where(b => b.Name.Contains(queryOptions));
            
